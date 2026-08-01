@@ -5,7 +5,7 @@ A reusable modal built with a portal, a focus trap, and escape-to-close.
 ## Concepts covered
 
 - **Portals** (`createPortal`) — render outside the parent DOM hierarchy so `overflow: hidden` / `z-index` on ancestors can't clip or bury the modal
-  - `createPortal(jsx, document.body)` → renders as a **sibling of `#root`**, not inside it — escapes ancestor `overflow`/`z-index` issues
+  - `createPortal(jsx, domNode)` → renders as a **sibling of `#root`**, not inside it — escapes ancestor `overflow`/`z-index` issues
   - **DOM tree** (DevTools → Elements): outside `#root`
   - **React tree** (React DevTools): still nested under `App` as normal — props, state, event bubbling all unaffected
   - Same in React's tree, different in the browser's tree

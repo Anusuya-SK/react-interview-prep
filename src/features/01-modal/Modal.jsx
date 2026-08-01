@@ -1,13 +1,15 @@
+import { createPortal } from "react-dom";
 import "./modal.css";
 
 function Modal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="modal-box">
       <p>I'm the modal content</p>
       <button onClick={onClose}>Close</button>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
