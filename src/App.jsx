@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ModalDemo from "./features/01-modal/App";
+import MultiStepForm from "./features/02-multistep-form/App";
 
 const features = {
   "01-modal": { label: "Modal", component: ModalDemo },
+  "02-multistep-form": { label: "Multi-step Form", component: MultiStepForm },
 };
 
 export default function App() {

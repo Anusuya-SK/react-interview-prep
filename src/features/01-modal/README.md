@@ -26,4 +26,5 @@ A reusable modal built with a portal, a focus trap, and escape-to-close.
 ## Files
 
 - `Modal.jsx` — the reusable component
+- `modal.css`: styles
 - `App.jsx` — minimal usage example
