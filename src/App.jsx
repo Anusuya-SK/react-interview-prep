@@ -8,7 +8,7 @@ const features = {
 };
 
 export default function App() {
-  const [active, setActive] = useState("01-modal");
+  const [active, setActive] = useState("02-multistep-form");
   const Active = features[active].component;
 
   return (

@@ -1,4 +1,4 @@
-.wizard {
+.multistep-form {
   max-width: 360px;
   margin: 40px auto;
   padding: 20px;
@@ -6,8 +6,12 @@
   border-radius: 8px;
 }
 
-.wizard-buttons {
+.multistep-form-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+.multistep-form-buttons button {
+  cursor: pointer;
 }
