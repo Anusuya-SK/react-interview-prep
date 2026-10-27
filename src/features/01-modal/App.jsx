@@ -8,7 +8,6 @@ function App() {
   return (
     <div>
       <button onClick={() => setIsOpen(true)}>Open</button>
-      <button onClick={() => setIsOpen(true)}>Hello</button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );

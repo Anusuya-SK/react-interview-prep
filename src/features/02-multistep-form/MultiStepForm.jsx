@@ -3,6 +3,12 @@ import "./multistep-form.css";
 
 function MultiStepForm() {
   const [step, setStep] = useState(0);
+  const LABELS = {
+    name: "Name",
+    email: "Email",
+    city: "City",
+    pincode: "Pincode",
+  };
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -68,8 +74,16 @@ function MultiStepForm() {
           />
         </div>
       )}
-
-      {step === 2 && <p>Review Goes here</p>}
+      {step === 2 && (
+        <dl className="multistep-form-review">
+          {Object.entries(formData).map(([key, value]) => (
+            <div key={key}>
+              <dt>{LABELS[key]}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
 
       <div className="multistep-form-buttons">
         <button onClick={() => setStep(step - 1)} disabled={step === 0}>
