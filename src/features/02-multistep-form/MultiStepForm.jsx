@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import "./multistep-form.css";
+import { SpaceIcon } from "lucide-react";
 
 function validateStep(step, formData) {
   const errors = {};
@@ -24,6 +25,7 @@ function validateStep(step, formData) {
 
 function MultiStepForm() {
   const [step, setStep] = useState(0);
+  const [errors, setErrors] = useState({});
   const LABELS = {
     name: "Name",
     email: "Email",
@@ -38,10 +40,21 @@ function MultiStepForm() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); //Clears an error as soon as the user types in that field.
   };
 
-  console.log(validateStep(step, formData));
+  const handleNext = () => {
+    const newErrors = validateStep(step, formData);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return null;
+    } else {
+      setErrors({});
+      setStep(step + 1);
+    }
+  };
 
   return (
     <div className="multistep-form">
@@ -64,6 +77,9 @@ function MultiStepForm() {
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && (
+            <span className="multistep-form-error">{errors.name}</span>
+          )}
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -73,6 +89,9 @@ function MultiStepForm() {
             value={formData.email}
             onChange={handleChange}
           />
+          {errors.email && (
+            <span className="multistep-form-error">{errors.email}</span>
+          )}
         </div>
       )}
       {step === 1 && (
@@ -86,6 +105,9 @@ function MultiStepForm() {
             value={formData.city}
             onChange={handleChange}
           />
+          {errors.city && (
+            <span className="multistep-form-error">{errors.city}</span>
+          )}
           <label htmlFor="pincode">Pincode</label>
           <input
             id="pincode"
@@ -95,6 +117,9 @@ function MultiStepForm() {
             value={formData.pincode}
             onChange={handleChange}
           />
+          {errors.pincode && (
+            <span className="multistep-form-error">{errors.pincode}</span>
+          )}
         </div>
       )}
       {step === 2 && (
@@ -109,10 +134,16 @@ function MultiStepForm() {
       )}
 
       <div className="multistep-form-buttons">
-        <button onClick={() => setStep(step - 1)} disabled={step === 0}>
+        <button
+          onClick={() => {
+            // setErrors({}); Errors are keyed per field, and each Next click replaces the whole object, so I didn’t need to clear on Back. If I added a global summary like “2 errors on this form”, I’d clear on Back.
+            setStep(step - 1);
+          }}
+          disabled={step === 0}
+        >
           Back
         </button>
-        <button onClick={() => setStep(step + 1)} disabled={step === 2}>
+        <button onClick={handleNext} disabled={step === 2}>
           Next
         </button>
       </div>
