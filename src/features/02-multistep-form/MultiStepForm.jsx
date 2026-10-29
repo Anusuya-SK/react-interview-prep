@@ -1,6 +1,27 @@
 import { useState } from "react";
 import "./multistep-form.css";
 
+function validateStep(step, formData) {
+  const errors = {};
+  if (step === 0) {
+    if (formData.name.trim() === "") {
+      errors.name = "Enter your name";
+    }
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      errors.email = "Enter a valid email";
+    }
+  }
+  if (step === 1) {
+    if (formData.city.trim() === "") {
+      errors.city = "Enter your city";
+    }
+    if (!/^\d{6}$/.test(formData.pincode)) {
+      errors.pincode = "Enter a valid pincode";
+    }
+  }
+  return errors;
+}
+
 function MultiStepForm() {
   const [step, setStep] = useState(0);
   const LABELS = {
@@ -19,6 +40,8 @@ function MultiStepForm() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  console.log(validateStep(step, formData));
 
   return (
     <div className="multistep-form">
