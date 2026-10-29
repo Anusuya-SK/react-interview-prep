@@ -1,6 +1,5 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import "./multistep-form.css";
-import { SpaceIcon } from "lucide-react";
 
 function validateStep(step, formData) {
   const errors = {};

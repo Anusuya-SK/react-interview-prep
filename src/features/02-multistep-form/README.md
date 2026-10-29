@@ -37,10 +37,7 @@ A 3-step form wizard (personal info → address → review) built with one share
 
 ## Not implemented yet
 
-- Per-step validation and inline error messages (Next blocked until the step is valid)
 - Submit button and success message on the last step
-- Progress indicator
-- Accessibility extras (`aria-invalid`, focus the first invalid field)
 
 ## Files
 
